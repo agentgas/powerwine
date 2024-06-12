@@ -13,3 +13,9 @@ Wine.find_or_create_by!(name: "Cheval Blanc", producer: "Saint-Emilion", year: 1
 Wine.find_or_create_by!(name: "Cheval Vert", producer: "Saint-Emilion", year: 2000, price: 1000)
 
 Expert.find_or_create_by(name: "Karl", email: "karl@powerwine.com")
+
+Wine.find_each do |wine|
+    wine.rates.find_or_create_by(expert_id: Expert.first.id) do |rate|
+        rate.rate = 9
+    end
+end

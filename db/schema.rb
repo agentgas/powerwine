@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_12_090305) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_12_090831) do
   create_table "experts", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_experts_on_email", unique: true
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.integer "rate", null: false
+    t.integer "wine_id", null: false
+    t.integer "expert_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expert_id"], name: "index_rates_on_expert_id"
+    t.index ["wine_id"], name: "index_rates_on_wine_id"
   end
 
   create_table "wines", force: :cascade do |t|
@@ -30,4 +40,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_12_090305) do
     t.index ["evaluation"], name: "index_wines_on_evaluation"
   end
 
+  add_foreign_key "rates", "experts"
+  add_foreign_key "rates", "wines"
 end
