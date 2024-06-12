@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   get "api/wines", to: "wines#get_wines"
+
+  post "api/rates", to: "rates#create"
+  patch "api/rates", to: "rates#update"
+  delete "apis/rates/:id", to: "rates#delete"
 end
