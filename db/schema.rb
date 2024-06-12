@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_11_114149) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_12_090305) do
+  create_table "experts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_experts_on_email", unique: true
+  end
+
   create_table "wines", force: :cascade do |t|
     t.string "name", null: false
     t.string "producer", null: false
