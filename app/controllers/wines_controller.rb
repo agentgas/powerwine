@@ -1,6 +1,12 @@
 class WinesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid_record
 
+    def salvage_wines
+        new_wines = Openwines::Retrieve.new.retrieve_datas
+
+        render json: new_wines, status: :ok
+    end
+
     def get_wines
         if wine_price_params.has_key?(:price_low) && wine_price_params.has_key?(:price_high) 
             all_wines = Wine.where("price IN (?)", (params[:price_low])..(params[:price_high]))
