@@ -18,7 +18,14 @@ RSpec.describe Rate, type: :model do
         expect(@wine.evaluation).to eq 10
       end
 
-      context "when a second Rate is created" do
+      context "when a second rate is created on same wine by same expert" do
+        let!(:rate) { @wine.rates.create(rate: 8, wine_id: @wine.id, expert_id: @expert2.id) }
+        it "to raise an ActiveRecord RecordInvalid error" do
+          expect { @wine.rates.create!(rate: 10, wine_id: @wine.id, expert_id: @expert2.id) }.to raise_error(ActiveRecord::RecordInvalid)
+        end
+      end
+
+      context "when a second Rate is created on same wine by a different expert" do
         let!(:rate2) { @wine.rates.create(rate: 8, wine_id: @wine.id, expert_id: @expert2.id) }
 
         it "updates Wine related Evaluation" do
