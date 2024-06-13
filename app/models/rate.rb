@@ -2,6 +2,8 @@ class Rate < ApplicationRecord
     belongs_to :wine
     belongs_to :expert
 
+    validates :expert_id, uniqueness: { scope: :wine_id }
+
     after_commit :update_wine_evaluation
 
     private
