@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   get "api/wines", to: "wines#get_wines"
+  get "api/salvage", to: "wines#salvage_wines"
 
   post "api/rates", to: "rates#create"
   patch "api/rates", to: "rates#update"
