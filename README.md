@@ -1,24 +1,16 @@
-# README
+# README PowerWine
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version 2.7.1
+* Rails 7.1.3
 
-Things you may want to cover:
+* Run Powerwine:
+git clone
+bundle install
+rails s
 
-* Ruby version
+* Init DB:
+rails db:migrate
+rails db:seed
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Test:
+bundle exec rspec
