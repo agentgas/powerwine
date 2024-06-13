@@ -14,8 +14,15 @@ RSpec.describe Rate, type: :model do
       let!(:rate) { @wine.rates.create(rate: 10, wine_id: @wine.id, expert_id: @expert.id) }
 
       it "updates Wine related Evaluation" do
-
         expect(@wine.evaluation).to eq 10
+      end
+
+      context "when a second Rate is created" do
+        let!(:rate2) { @wine.rates.create(rate: 20, wine_id: @wine.id, expert_id: @expert.id) }
+
+        it "updates Wine related Evaluation" do
+          expect(@wine.evaluation).to eq 15
+        end
       end
     end
 
